@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Reward Logging System</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 90vh; margin: 0; }
+        .form-container { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 480px; }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; margin-top: 0; }
+        label { font-weight: bold; display: block; margin-top: 15px; color: #555; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        textarea { resize: vertical; height: 70px; }
+        
+        .toggle-group { display: flex; gap: 10px; margin-top: 10px; }
+        .toggle-btn { flex: 1; padding: 10px; border: 2px solid #eab308; background: white; color: #333; font-weight: bold; border-radius: 6px; cursor: pointer; text-align: center; }
+        .toggle-btn.active { background: #eab308; color: white; }
+
+        .tag-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .tag { background: #fef08a; color: #854d0e; padding: 4px 10px; border-radius: 12px; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+        .tag span { cursor: pointer; color: #dc2626; font-weight: bold; }
+
+        .add-row { display: flex; gap: 8px; margin-top: 5px; }
+        .add-btn { width: auto; background: #6366f1; padding: 10px 16px; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .add-btn:hover { background: #4f46e5; }
+
+        button[type="submit"] { width: 100%; background-color: #eab308; color: white; padding: 12px; border: none; border-radius: 6px; margin-top: 25px; font-size: 16px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        button[type="submit"]:hover { background-color: #ca8a04; }
+        .error-msg { color: #dc2626; font-size: 12px; display: none; margin-top: 4px; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>⭐ Star Reward System</h2>
+    
+    <!-- PASTE YOUR WEB APP URL IN THE ACTION ATTRIBUTE BELOW -->
+    <form id="rewardForm" action="https://script.google.com/macros/s/AKfycbyKPxpTHeKtS9jyt8D8Zy9pS2uShONVAKR0w-kK8_hEJeLfyC8IDUX65QVxiNAWFal0Nw/exec" method="POST" onsubmit="return validateForm()">
+        
+        <!-- TEACHER SELECTION -->
+        <label for="teacherName">Teacher's Name</label>
+        <select name="teacherName" id="teacherName" required onchange="resetPasscodeValidation()">
+            <option value="" disabled selected>Select your name</option>
+            <!-- TEACHER NAMES LIST -->
+            <option value="Chan Hin Chiu">Chan Hin Chiu</option>
+            <option value="Chan Ka Ying, Anna">Chan Ka Ying, Anna</option>
+            <option value="Chan Kwok Keung">Chan Kwok Keung</option>
+            <option value="Chan Kwok Kwan">Chan Kwok Kwan</option>
+            <option value="Chan Lok Hin">Chan Lok Hin</option>
+            <option value="Chan Oi Yan, Irene">Chan Oi Yan, Irene</option>
+            <option value="Chan Shuk Man">Chan Shuk Man</option>
+            <option value="Chan Tsz Man">Chan Tsz Man</option>
+            <option value="Chan Wing Yin, Winnie">Chan Wing Yin, Winnie</option>
+            <option value="Chan Yau Sing">Chan Yau Sing</option>
+            <option value="Chan Ying Yuk">Chan Ying Yuk</option>
+            <option value="Chan Yuk Wah">Chan Yuk Wah</option>
+            <option value="Chan Yung Cheung">Chan Yung Cheung</option>
+            <option value="Cheung Chi Wai">Cheung Chi Wai</option>
+            <option value="Cheung Hoi Ning">Cheung Hoi Ning</option>
+            <option value="Cheung Ka Man">Cheung Ka Man</option>
+            <option value="Cheung Man Bun">Cheung Man Bun</option>
+            <option value="Chu Ki Cheong">Chu Ki Cheong</option>
+            <option value="Chui Fung Ming, Trinni">Chui Fung Ming, Trinni</option>
+            <option value="Chung Yuen Wah">Chung Yuen Wah</option>
+            <option value="Fong Pik Yuk">Fong Pik Yuk</option>
+            <option value="Heung Pak Yan">Heung Pak Yan</option>
+            <option value="Hung Chun Man">Hung Chun Man</option>
+            <option value="Hussain Nibla Shabir">Hussain Nibla Shabir</option>
+            <option value="Kiang Chi Hong">Kiang Chi Hong</option>
+            <option value="Kong Lai Han">Kong Lai Han</option>
+            <option value="Koo Yiu">Koo Yiu</option>
+            <option value="Kwok Pui Pui, Alison">Kwok Pui Pui, Alison</option>
+            <option value="Lam Ka Yan">Lam Ka Yan</option>
+            <option value="Lam Mei Po">Lam Mei Po</option>
+            <option value="Lam On Nei">Lam On Nei</option>
+            <option value="Lam Shuk Ying">Lam Shuk Ying</option>
+            <option value="Lam Wai Ling">Lam Wai Ling</option>
+            <option value="Lam Wai Man">Lam Wai Man</option>
+            <option value="Lau Nga Man">Lau Nga Man</option>
+            <option value="Lau Wing Kwan">Lau Wing Kwan</option>
+            <option value="Leung Pui Ling">Leung Pui Ling</option>
+            <option value="Li Chi Shing">Li Chi Shing</option>
+            <option value="Li Silin">Li Silin</option>
+            <option value="Lo Chiu Wing">Lo Chiu Wing</option>
+            <option value="Lui Yu Fong, Esther">Lui Yu Fong, Esther</option>
+            <option value="Mak Sin Yee">Mak Sin Yee</option>
+            <option value="Mak Shuk Man">Mak Shuk Man</option>
+            <option value="Mak Tsui Han">Mak Tsui Han</option>
+            <option value="Ng Oi Yan">Ng Oi Yan</option>
+            <option value="Sha Wai Pak">Sha Wai Pak</option>
+            <option value="Suen Chun Long">Suen Chun Long</option>
+            <option value="Sung Lai Ying">Sung Lai Ying</option>
+            <option value="Toa Wai Fook">Toa Wai Fook</option>
+            <option value="Tsao Man Fai">Tsao Man Fai</option>
+            <option value="Wong Kwok Tai">Wong Kwok Tai</option>
+            <option value="Wong Shing Fung">Wong Shing Fung</option>
+            <option value="Wong Suk Yin">Wong Suk Yin</option>
+            <option value="Yao Hing Man">Yao Hing Man</option>
+            <option value="Yip Kin Man">Yip Kin Man</option>
+            <option value="Yu Siu Ping">Yu Siu Ping</option>
+        </select>
+
+        <!-- SECRET PASSCODE -->
+        <label for="passcode">6-Digit Secret Passcode</label>
+        <input type="password" id="passcode" name="passcode" maxlength="6" pattern="\d{6}" placeholder="Enter 6-digit code" required>
+        <div id="passcodeError" class="error-msg">Incorrect passcode for selected teacher!</div>
+
+        <!-- REWARD TYPE TOGGLE -->
+        <label>Reward Mode</label>
+        <div class="toggle-group">
+            <div id="btnClass" class="toggle-btn active" onclick="setMode('class')">By Class</div>
+            <div id="btnStudent" class="toggle-btn" onclick="setMode('student')">By Student</div>
+        </div>
+        <input type="hidden" name="rewardType" id="rewardType" value="class">
+
+        <!-- BY CLASS SECTION (1A - 6D) -->
+        <div id="classStreamSection">
+            <label for="rewardingClass">Select Class</label>
+            <select name="rewardingClass" id="rewardingClass">
+                <option value="" disabled selected>Select class (1A - 6D)</option>
+                <option value="1A">1A</option><option value="1B">1B</option><option value="1C">1C</option><option value="1D">1D</option>
+                <option value="2A">2A</option><option value="2B">2B</option><option value="2C">2C</option><option value="2D">2D</option>
+                <option value="3A">3A</option><option value="3B">3B</option><option value="3C">3C</option><option value="3D">3D</option>
+                <option value="4A">4A</option><option value="4B">4B</option><option value="4C">4C</option><option value="4D">4D</option>
+                <option value="5A">5A</option><option value="5B">5B</option><option value="5C">5C</option><option value="5D">5D</option>
+                <option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option>
+            </select>
+        </div>
+
+        <!-- BY STUDENT SECTION -->
+        <div id="studentStreamSection" style="display: none;">
+            <label for="studentClass">Select Class</label>
+            <select id="studentClass" name="studentClass" onchange="populateStudents()">
+                <option value="" disabled selected>Select class first</option>
+                <option value="1A">1A</option><option value="1B">1B</option>
+                <option value="1C">1C</option><option value="1D">1D</option>
+                <!-- Add options 2A through 6D as needed -->
+            </select>
+
+            <label for="studentSelect">Select Student</label>
+            <div class="add-row">
+                <select id="studentSelect">
+                    <option value="" disabled selected>Select a student</option>
+                </select>
+                <button type="button" class="add-btn" onclick="addStudentTag()">+ ADD</button>
+            </div>
+
+            <div id="selectedStudentsList" class="tag-container"></div>
+            <input type="hidden" name="studentNames" id="studentNames">
+        </div>
+
+        <!-- STAR COUNT -->
+        <label for="stars">Stars Awarded</label>
+        <select name="stars" id="stars" required>
+            <option value="1">⭐ 1 Star</option>
+            <option value="2">⭐⭐ 2 Stars</option>
+            <option value="3">⭐⭐⭐ 3 Stars</option>
+            <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+        </select>
+
+        <!-- REASON -->
+        <label for="reason">Reason for Reward</label>
+        <textarea name="reason" id="reason" placeholder="Brief reason for giving stars..." required></textarea>
+
+        <button type="submit">Submit Stars</button>
+    </form>
+</div>
+
+<script>
+    /* ==========================================================
+       1. TEACHER PASSCODE MAP (EDIT CODES HERE IF NEEDED)
+    =========================================================== */
+    const TEACHER_PASSCODES = {
+        "Chan Hin Chiu": "849201", "Chan Ka Ying, Anna": "315682", "Chan Kwok Keung": "762049",
+        "Chan Kwok Kwan": "194830", "Chan Lok Hin": "520937", "Chan Oi Yan, Irene": "683154",
+        "Chan Shuk Man": "941720", "Chan Tsz Man": "237586", "Chan Wing Yin, Winnie": "604815",
+        "Chan Yau Sing": "852963", "Chan Ying Yuk": "149302", "Chan Yuk Wah": "736158",
+        "Chan Yung Cheung": "428901", "Cheung Chi Wai": "915234", "Cheung Hoi Ning": "380617",
+        "Cheung Ka Man": "674290", "Cheung Man Bun": "259148", "Chu Ki Cheong": "803716",
+        "Chui Fung Ming, Trinni": "516482", "Chung Yuen Wah": "932057", "Fong Pik Yuk": "471829",
+        "Heung Pak Yan": "128493", "Hung Chun Man": "659304", "Hussain Nibla Shabir": "304718",
+        "Kiang Chi Hong": "892156", "Kong Lai Han": "430872", "Koo Yiu": "715943",
+        "Kwok Pui Pui, Alison": "268301", "Lam Ka Yan": "594187", "Lam Mei Po": "931640",
+        "Lam On Nei": "172594", "Lam Shuk Ying": "806239", "Lam Wai Ling": "349015",
+        "Lam Wai Man": "685721", "Lau Nga Man": "210493", "Lau Wing Kwan": "754820",
+        "Leung Pui Ling": "493106", "Li Chi Shing": "826539", "Li Silin": "139704",
+        "Lo Chiu Wing": "648215", "Lui Yu Fong, Esther": "205938", "Mak Sin Yee": "781409",
+        "Mak Shuk Man": "369251", "Mak Tsui Han": "924810", "Ng Oi Yan": "510374",
+        "Sha Wai Pak": "837192", "Suen Chun Long": "246915", "Sung Lai Ying": "691483",
+        "Toa Wai Fook": "158027", "Tsao Man Fai": "703849", "Wong Kwok Tai": "429163",
+        "Wong Shing Fung": "860532", "Wong Suk Yin": "314976", "Yao Hing Man": "975204",
+        "Yip Kin Man": "538169", "Yu Siu Ping": "284605"
+    };
+
+    /* ==========================================================
+       2. CLASS STUDENT ROSTERS (UPDATE STUDENT NAMES HERE NEXT YEAR)
+    =========================================================== */
+    const CLASS_STUDENTS = {
+        "1A": ["Chan Tai Man", "Lee Siu Ming", "Wong Ka Ho", "Cheung Wai Ting"],
+        "1B": ["Au Yeung Fei", "Chow Ting Ting", "Ho Kin Chung"],
+        "1C": ["Chan Wai", "Li Ho", "Ng Kwok Wai"],
+        "1D": ["Leung Ka Wai", "Tam Ka Man", "Wong Ching"]
+        // Add additional class arrays as needed
+    };
+
+    let selectedStudents = [];
+
+    function setMode(mode) {
+        document.getElementById('rewardType').value = mode;
+        if(mode === 'class') {
+            document.getElementById('btnClass').classList.add('active');
+            document.getElementById('btnStudent').classList.remove('active');
+            document.getElementById('classStreamSection').style.display = 'block';
+            document.getElementById('studentStreamSection').style.display = 'none';
+        } else {
+            document.getElementById('btnStudent').classList.add('active');
+            document.getElementById('btnClass').classList.remove('active');
+            document.getElementById('classStreamSection').style.display = 'none';
+            document.getElementById('studentStreamSection').style.display = 'block';
+        }
+    }
+
+    function populateStudents() {
+        const cls = document.getElementById('studentClass').value;
+        const select = document.getElementById('studentSelect');
+        select.innerHTML = '<option value="" disabled selected>Select a student</option>';
+        
+        if (CLASS_STUDENTS[cls]) {
+            CLASS_STUDENTS[cls].forEach(name => {
+                const opt = document.createElement('option');
+                opt.value = name;
+                opt.textContent = name;
+                select.appendChild(opt);
+            });
+        }
+    }
+
+    function addStudentTag() {
+        const select = document.getElementById('studentSelect');
+        const val = select.value;
+        if (val && !selectedStudents.includes(val)) {
+            selectedStudents.push(val);
+            renderStudentTags();
+        }
+    }
+
+    function removeStudentTag(name) {
+        selectedStudents = selectedStudents.filter(s => s !== name);
+        renderStudentTags();
+    }
+
+    function renderStudentTags() {
+        const container = document.getElementById('selectedStudentsList');
+        container.innerHTML = '';
+        selectedStudents.forEach(name => {
+            const tag = document.createElement('div');
+            tag.className = 'tag';
+            tag.innerHTML = `${name} <span onclick="removeStudentTag('${name}')">&times;</span>`;
+            container.appendChild(tag);
+        });
+        document.getElementById('studentNames').value = selectedStudents.join(',');
+    }
+
+    function validateForm() {
+        const teacher = document.getElementById('teacherName').value;
+        const code = document.getElementById('passcode').value;
+        const err = document.getElementById('passcodeError');
+
+        if (TEACHER_PASSCODES[teacher] && TEACHER_PASSCODES[teacher] !== code) {
+            err.style.display = 'block';
+            return false;
+        }
+        
+        const mode = document.getElementById('rewardType').value;
+        if (mode === 'student' && selectedStudents.length === 0) {
+            alert('Please add at least one student before submitting.');
+            return false;
+        }
+
+        err.style.display = 'none';
+        return true;
+    }
+
+    function resetPasscodeValidation() {
+        document.getElementById('passcodeError').style.display = 'none';
+    }
+</script>
+</body>
+</html>
